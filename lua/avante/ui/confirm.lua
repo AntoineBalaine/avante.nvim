@@ -119,7 +119,7 @@ function M:open()
     },
     buf_options = {
       filetype = "AvanteConfirm",
-      modifiable = false,
+      modifiable = true,
       readonly = true,
       buftype = "nofile",
     },

@@ -1446,7 +1446,7 @@ function Sidebar:apply(current_cursor)
 end
 
 local buf_options = {
-  modifiable = false,
+  modifiable = true,
   swapfile = false,
   buftype = "nofile",
 }
@@ -3097,7 +3097,7 @@ function Sidebar:render(opts)
     relative = "editor",
     position = get_position(),
     buf_options = vim.tbl_deep_extend("force", buf_options, {
-      modifiable = false,
+      modifiable = true,
       swapfile = false,
       buftype = "nofile",
       bufhidden = "wipe",

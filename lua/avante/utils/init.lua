@@ -476,7 +476,7 @@ function M.lock_buf(bufnr)
   vim.cmd("noautocmd stopinsert")
   vim.bo[bufnr].readonly = true
   vim.bo[bufnr].modified = false
-  vim.bo[bufnr].modifiable = false
+  vim.bo[bufnr].modifiable = true
 end
 
 ---@param winnr? number
