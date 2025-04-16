@@ -131,6 +131,8 @@ function Sidebar:open(opts)
     vim.g.avante_login = true
   end
 
+
+  -- vim.cmd("wincmd =")
   return self
 end
 
@@ -197,6 +199,9 @@ function Sidebar:close(opts)
   end
 
   self:recover_code_winhl()
+
+
+  -- vim.cmd("wincmd =")
 end
 
 function Sidebar:shutdown()
@@ -2072,7 +2077,7 @@ function Sidebar:update_content(content, opts)
       if opts.backspace ~= nil and opts.backspace > 0 then
         delete_last_n_chars(self.result_container.bufnr, opts.backspace)
       end
-      scroll_to_bottom()
+      -- scroll_to_bottom()
       local lines = vim.split(content, "\n")
       api.nvim_buf_call(self.result_container.bufnr, function() api.nvim_put(lines, "c", true, true) end)
       Utils.lock_buf(self.result_container.bufnr)
