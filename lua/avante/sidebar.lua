@@ -2081,6 +2081,10 @@ function Sidebar:update_content(content, opts)
       if opts.callback ~= nil then opts.callback() end
     end)
   else
+    -- In the update_content function, before the vim.defer_fn call
+    local result_width = self.result_container and api.nvim_win_get_width(self.result_container.winid) or nil
+    local input_width = self.input_container and api.nvim_win_get_width(self.input_container.winid) or nil
+
     vim.defer_fn(function()
       if not Utils.is_valid_container(self.result_container) then return end
       local lines = vim.split(content, "\n")
@@ -2096,6 +2100,13 @@ function Sidebar:update_content(content, opts)
       if opts.scroll then Utils.buf_scroll_to_end(self.result_container.bufnr) end
 
       if opts.callback ~= nil then opts.callback() end
+      -- Then at the end of the callback in vim.defer_fn
+      if result_width and self.result_container and api.nvim_win_is_valid(self.result_container.winid) then
+        api.nvim_win_set_width(self.result_container.winid, result_width)
+      end
+      if input_width and self.input_container and api.nvim_win_is_valid(self.input_container.winid) then
+        api.nvim_win_set_width(self.input_container.winid, input_width)
+      end
     end, 0)
   end
   return self
