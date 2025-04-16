@@ -29,7 +29,7 @@ local Highlights = {
   AVANTE_PROMPT_INPUT_BORDER = { name = "AvantePromptInputBorder", link = "NormalFloat" },
   AVANTE_SIDEBAR_WIN_SEPARATOR = {
     name = "AvanteSidebarWinSeparator",
-    fg_link_bg = "NormalFloat",
+    fg_link_bg = "WinSeparator",
     bg_link = "NormalFloat",
   },
   AVANTE_SIDEBAR_WIN_HORIZONTAL_SEPARATOR = {
