@@ -2050,7 +2050,7 @@ end
 ---@param opts? {focus?: boolean, scroll?: boolean, backspace?: integer, ignore_history?: boolean, callback?: fun(): nil} whether to focus the result view
 function Sidebar:update_content(content, opts)
   if not self.result_container or not self.result_container.bufnr then return end
-  opts = vim.tbl_deep_extend("force", { focus = false, scroll = true, stream = false, callback = nil }, opts or {})
+  opts = vim.tbl_deep_extend("force", { focus = false, scroll = Config.behaviour.auto_scroll_response, stream = false, callback = nil }, opts or {})
   if not opts.ignore_history then
     local chat_history = Path.history.load(self.code.bufnr)
     content = self.render_history_content(chat_history) .. "-------\n\n" .. content
@@ -2603,7 +2603,7 @@ function Sidebar:create_input_container(opts)
     local current_path = ""
 
     local is_first_chunk = true
-    local scroll = true
+    local scroll = Config.behaviour.auto_scroll_response
 
     ---stop scroll when user presses j/k keys
     local function on_j()
